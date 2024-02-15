@@ -9,7 +9,6 @@ import JoinGame from "./components/JoinGame";
 
 function App() {
   const api_key = process.env.REACT_APP_API_KEY;
-  console.log(api_key);
   const cookies = new Cookies();
   const token = cookies.get("token");
   const client = StreamChat.getInstance(api_key);
