@@ -6,8 +6,9 @@
   "type": "module",
   "author": "Tushar",
   "scripts": {
-    "start": "node src/index.js",
-    "dev": "nodemon src/index.js"
+    "start": "node server/src/index.js",
+    "dev": "nodemon src/index.js",
+    "postinstall": "npm install --prefix client && npm install --prefix server"
   },
   "dependencies": {
     "bcrypt": "^5.0.1",
