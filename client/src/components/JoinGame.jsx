@@ -36,7 +36,7 @@ function JoinGame({ apiUrl }) {
     }
 
     const newChannel = await client.channel("messaging", {
-      members: [client.userID, response.users[0].id],
+      members: [client.userID, streamResponse.users[0].id],
     });
 
     await newChannel.watch();
