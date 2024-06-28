@@ -6,7 +6,13 @@ import bcrypt from "bcrypt";
 import "dotenv/config";
 const app = express();
 
-app.use(cors());
+const allowedOrigins = ["https://tic-tac-toe-frontend-mxjj.onrender.com"];
+
+app.use(
+  cors({
+    origin: allowedOrigins,
+  })
+);
 app.use(express.json());
 
 const api_key = process.env.API_KEY;

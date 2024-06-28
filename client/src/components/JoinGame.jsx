@@ -3,15 +3,24 @@ import { useChatContext, Channel } from "stream-chat-react";
 import Game from "./Game";
 import CustomInput from "./CustomInput";
 
-function JoinGame() {
+function JoinGame({ apiUrl }) {
   const [rivalUsername, setRivalUsername] = useState("");
   const { client } = useChatContext();
   const [channel, setChannel] = useState(null);
 
   const createChannel = async () => {
-    const response = await client.queryUsers({ name: { $eq: rivalUsername } });
+    // Backend API call to validate user or other tasks
+    const response = await fetch(`${apiUrl}/validate-user`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ username: rivalUsername }),
+    });
 
-    if (response.users.length === 0) {
+    const data = await response.json();
+
+    if (!data.exists) {
       alert("User Not Found");
       return;
     }

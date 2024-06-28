@@ -9,6 +9,9 @@ import JoinGame from "./components/JoinGame";
 
 function App() {
   const api_key = process.env.REACT_APP_API_KEY;
+  // Example using React
+  const apiUrl = process.env.REACT_APP_API_URL;
+
   const cookies = new Cookies();
   const token = cookies.get("token");
   const client = StreamChat.getInstance(api_key);
@@ -46,7 +49,7 @@ function App() {
     <div className="App">
       {isAuth ? (
         <Chat client={client}>
-          <JoinGame />
+          <JoinGame apiUrl={apiUrl} />
           <button id="logout" onClick={logOut}>
             Log Out
           </button>
