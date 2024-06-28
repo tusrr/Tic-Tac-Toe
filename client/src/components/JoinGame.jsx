@@ -25,6 +25,16 @@ function JoinGame({ apiUrl }) {
       return;
     }
 
+    // Step 2: Stream Chat API call to query users
+    const streamResponse = await client.queryUsers({
+      name: { $eq: rivalUsername },
+    });
+
+    if (streamResponse.users.length === 0) {
+      alert("User Not Found");
+      return;
+    }
+
     const newChannel = await client.channel("messaging", {
       members: [client.userID, response.users[0].id],
     });
